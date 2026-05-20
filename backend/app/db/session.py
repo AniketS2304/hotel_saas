@@ -3,8 +3,18 @@ from typing import AsyncGenerator
 
 from app.core.config import settings
 
+# Render/Heroku provide DATABASE_URL as "postgres://" or "postgresql://"
+# (psycopg2 sync driver). SQLAlchemy async requires "postgresql+asyncpg://".
+# Rewrite the scheme here so the app works regardless of how the env var is set.
+def _async_db_url(url: str) -> str:
+    if url.startswith("postgres://"):
+        url = url.replace("postgres://", "postgresql+asyncpg://", 1)
+    elif url.startswith("postgresql://"):
+        url = url.replace("postgresql://", "postgresql+asyncpg://", 1)
+    return url
+
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    _async_db_url(settings.DATABASE_URL),
     echo=False,
     pool_pre_ping=True,
     pool_size=10,
