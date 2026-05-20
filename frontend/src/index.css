@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-family-sans: 'Inter', sans-serif;
+  --font-family-heading: 'Outfit', sans-serif;
+
+  --color-primary: #F97316;
+  --color-primary-dark: #EA6C0A;
+  --color-primary-light: #FED7AA;
+
+  --color-dark-bg: #0F0F0F;
+  --color-dark-card: #1A1A1A;
+  --color-dark-border: #2A2A2A;
+  --color-dark-muted: #3A3A3A;
+
+  --animate-fade-in: fadeIn 0.3s ease-in-out;
+  --animate-slide-up: slideUp 0.3s ease-out;
+  --animate-pulse-dot: pulseDot 1.5s infinite;
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+}
+
+:root {
+  --primary: #F97316;
+  --bg: #0F0F0F;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: #0F0F0F;
+  color: #F9FAFB;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-dark-card hover:bg-dark-muted text-gray-200 font-medium px-6 py-3 rounded-xl border border-dark-border transition-all duration-200;
+  }
+  .card {
+    @apply bg-dark-card border border-dark-border rounded-2xl;
+  }
+  .glass {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl;
+  }
+  .input {
+    @apply bg-dark-card border border-dark-border rounded-xl px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all w-full;
+  }
+  .badge-pending { @apply bg-yellow-900/40 text-yellow-400 border border-yellow-800; }
+  .badge-accepted { @apply bg-blue-900/40 text-blue-400 border border-blue-800; }
+  .badge-preparing { @apply bg-orange-900/40 text-orange-400 border border-orange-800; }
+  .badge-ready { @apply bg-green-900/40 text-green-400 border border-green-800; }
+  .badge-served { @apply bg-gray-700/40 text-gray-400 border border-gray-600; }
+  .badge-cancelled { @apply bg-red-900/40 text-red-400 border border-red-800; }
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #1A1A1A; }
+::-webkit-scrollbar-thumb { background: #3A3A3A; border-radius: 3px; }
