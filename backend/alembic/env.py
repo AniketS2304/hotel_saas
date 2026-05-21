@@ -9,6 +9,7 @@ from sqlalchemy.ext.asyncio import create_async_engine
 # Import settings and Base so Alembic can access the target metadata
 from app.core.config import settings
 from app.db.base import Base
+from app.db.session import _async_db_url
 from app.models.restaurant import Restaurant
 from app.models.user import User
 from app.models.table import Table
@@ -27,7 +28,7 @@ if config.config_file_name is not None:
 target_metadata = Base.metadata
 
 # Override the sqlalchemy.url from settings (async URL)
-config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+config.set_main_option("sqlalchemy.url", _async_db_url(settings.DATABASE_URL))
 
 
 def run_migrations_offline() -> None:
@@ -69,7 +70,7 @@ async def run_async_migrations() -> None:
     the async context.
     """
     connectable = create_async_engine(
-        settings.DATABASE_URL,
+        _async_db_url(settings.DATABASE_URL),
         poolclass=pool.NullPool,
     )
 
