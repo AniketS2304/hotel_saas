@@ -5,7 +5,7 @@ import cloudinary
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.v1 import auth, menu, orders, restaurants, tables
+from app.api.v1 import auth, menu, orders, restaurants, tables, staff
 from app.core.config import settings
 from app.websocket.router import router as ws_router
 
@@ -52,6 +52,7 @@ def create_app() -> FastAPI:
     app.include_router(orders.router, prefix=api_prefix)
     app.include_router(tables.router, prefix=api_prefix)
     app.include_router(restaurants.router, prefix=api_prefix)
+    app.include_router(staff.router, prefix=api_prefix)
 
     # ── WebSocket Router ──────────────────────────────────────────────────────
     app.include_router(ws_router)

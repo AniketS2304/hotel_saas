@@ -18,6 +18,7 @@ import OrdersPage from '../pages/admin/OrdersPage'
 import MenuManagementPage from '../pages/admin/MenuManagementPage'
 import TablesPage from '../pages/admin/TablesPage'
 import AnalyticsPage from '../pages/admin/AnalyticsPage'
+import StaffPage from '../pages/admin/StaffPage'
 // import KitchenDisplayPage from '../pages/kitchen/KitchenDisplayPage'  // KITCHEN DISABLED
 import WaiterPage from '../pages/waiter/WaiterPage'
 
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: 'analytics',
         element: <AnalyticsPage />,
+      },
+      {
+        path: 'staff',
+        element: <StaffPage />,
       },
     ],
   },

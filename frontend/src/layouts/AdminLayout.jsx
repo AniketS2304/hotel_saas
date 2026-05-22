@@ -7,6 +7,7 @@ import {
   LogOut,
   ChefHat,
   Wifi,
+  Users2,
 } from 'lucide-react'
 import useAuthStore from '../store/authStore'
 import { useQuery } from '@tanstack/react-query'
@@ -17,6 +18,7 @@ const navItems = [
   { to: '/admin/orders', label: 'Orders', icon: ShoppingBag },
   { to: '/admin/menu', label: 'Menu', icon: UtensilsCrossed },
   { to: '/admin/tables', label: 'Tables', icon: QrCode },
+  { to: '/admin/staff', label: 'Staff', icon: Users2 },
   { to: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
 ]
 
