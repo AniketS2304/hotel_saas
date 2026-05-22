@@ -13,6 +13,13 @@ from app.websocket.router import router as ws_router
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """Application lifespan handler: configure external services on startup."""
+    # Initialize database tables on startup if they don't exist
+    from app.db.session import init_db
+    try:
+        await init_db()
+    except Exception as e:
+        print(f"Error during database initialization: {e}")
+
     # Configure Cloudinary only if credentials are provided
     if settings.CLOUDINARY_CLOUD_NAME and settings.CLOUDINARY_API_KEY:
         cloudinary.config(

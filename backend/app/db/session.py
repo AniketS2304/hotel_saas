@@ -41,3 +41,17 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
             raise
         finally:
             await session.close()
+
+
+async def init_db() -> None:
+    """Initialize the database by creating all tables if they do not exist."""
+    from app.db.base import Base
+    from app.models.restaurant import Restaurant
+    from app.models.user import User
+    from app.models.table import Table
+    from app.models.menu import MenuCategory, MenuItem
+    from app.models.order import Order, OrderItem
+
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
