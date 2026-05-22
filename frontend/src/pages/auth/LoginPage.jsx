@@ -69,27 +69,27 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-dark-bg flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="relative flex items-center justify-center min-h-screen px-4 overflow-hidden bg-dark-bg">
       {/* Background gradient blobs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-900/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none" />
+      <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none w-96 h-96 bg-primary/10 blur-3xl" />
+      <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 rounded-full pointer-events-none w-96 h-96 bg-orange-900/10 blur-3xl" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Card */}
-      <div className="glass p-8 w-full max-w-md relative z-10 animate-slide-up">
+      <div className="relative z-10 w-full max-w-md p-8 glass animate-slide-up">
         {/* Logo */}
         <div className="flex flex-col items-center mb-6">
-          <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-primary/30">
-            <ChefHat className="w-9 h-9 text-white" />
+          <div className="flex items-center justify-center w-16 h-16 mb-4 shadow-lg bg-primary rounded-2xl shadow-primary/30">
+            <ChefHat className="text-white w-9 h-9" />
           </div>
-          <h1 className="font-heading font-bold text-white text-3xl mb-1">ScanDine</h1>
-          <p className="text-gray-500 text-sm">
+          <h1 className="mb-1 text-3xl font-bold text-white font-heading">ScanDine</h1>
+          <p className="text-sm text-gray-500">
             {tab === 'login' ? 'Sign in to your restaurant dashboard' : 'Create your restaurant account'}
           </p>
         </div>
 
         {/* Tabs */}
-        <div className="flex bg-dark-muted rounded-xl p-1 mb-6 gap-1">
+        <div className="flex gap-1 p-1 mb-6 bg-dark-muted rounded-xl">
           {[
             { key: 'login', label: 'Sign In' },
             { key: 'register', label: 'Register' },
@@ -112,9 +112,9 @@ export default function LoginPage() {
         {tab === 'login' && (
           <form onSubmit={handleLogin} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Email address</label>
+              <label className="block mb-2 text-sm font-medium text-gray-400">Email address</label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <Mail className="absolute w-4 h-4 text-gray-500 -translate-y-1/2 left-4 top-1/2" />
                 <input
                   type="email"
                   value={loginEmail}
@@ -128,22 +128,22 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Password</label>
+              <label className="block mb-2 text-sm font-medium text-gray-400">Password</label>
               <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <Lock className="absolute w-4 h-4 text-gray-500 -translate-y-1/2 left-4 top-1/2" />
                 <input
                   type={showPass ? 'text' : 'password'}
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="input pl-11 pr-12"
+                  className="pr-12 input pl-11"
                   autoComplete="current-password"
                   disabled={loading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
+                  className="absolute text-gray-500 transition-colors -translate-y-1/2 right-4 top-1/2 hover:text-gray-300"
                 >
                   {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -153,7 +153,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-primary w-full flex items-center justify-center gap-3 mt-2"
+              className="flex items-center justify-center w-full gap-3 mt-2 btn-primary"
             >
               {loading ? <><LoadingSpinner size="sm" /> Signing in...</> : 'Sign In'}
             </button>
@@ -164,9 +164,9 @@ export default function LoginPage() {
         {tab === 'register' && (
           <form onSubmit={handleRegister} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+              <label className="block mb-2 text-sm font-medium text-gray-400">Your Name</label>
               <div className="relative">
-                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <User className="absolute w-4 h-4 text-gray-500 -translate-y-1/2 left-4 top-1/2" />
                 <input
                   type="text"
                   value={regName}
@@ -179,9 +179,9 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Restaurant Name</label>
+              <label className="block mb-2 text-sm font-medium text-gray-400">Restaurant Name</label>
               <div className="relative">
-                <UtensilsCrossed className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <UtensilsCrossed className="absolute w-4 h-4 text-gray-500 -translate-y-1/2 left-4 top-1/2" />
                 <input
                   type="text"
                   value={regRestaurant}
@@ -194,9 +194,9 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Email address</label>
+              <label className="block mb-2 text-sm font-medium text-gray-400">Email address</label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <Mail className="absolute w-4 h-4 text-gray-500 -translate-y-1/2 left-4 top-1/2" />
                 <input
                   type="email"
                   value={regEmail}
@@ -210,22 +210,22 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Password</label>
+              <label className="block mb-2 text-sm font-medium text-gray-400">Password</label>
               <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <Lock className="absolute w-4 h-4 text-gray-500 -translate-y-1/2 left-4 top-1/2" />
                 <input
                   type={showPass ? 'text' : 'password'}
                   value={regPassword}
                   onChange={(e) => setRegPassword(e.target.value)}
                   placeholder="Min. 6 characters"
-                  className="input pl-11 pr-12"
+                  className="pr-12 input pl-11"
                   autoComplete="new-password"
                   disabled={loading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
+                  className="absolute text-gray-500 transition-colors -translate-y-1/2 right-4 top-1/2 hover:text-gray-300"
                 >
                   {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -235,19 +235,19 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-primary w-full flex items-center justify-center gap-3 mt-2"
+              className="flex items-center justify-center w-full gap-3 mt-2 btn-primary"
             >
               {loading ? <><LoadingSpinner size="sm" /> Creating account...</> : 'Create Restaurant Account'}
             </button>
 
-            <p className="text-xs text-gray-600 text-center">
+            <p className="text-xs text-center text-gray-600">
               By registering you agree to our terms of service.
             </p>
           </form>
         )}
 
-        <p className="text-center text-xs text-gray-600 mt-6">
-          Restaurant QR Ordering · ScanDine © 2024
+        <p className="mt-6 text-xs text-center text-gray-600">
+          Restaurant QR Ordering · ScanDine © 2026
         </p>
       </div>
     </div>
